@@ -35,7 +35,6 @@ const styles = {
 class EditUser extends React.Component{
     constructor(props){
         super(props);
-        console.log("current sTATE LOCATION", this.props.location.state)
         var {currUser} = this.props.location.state;
  
         this.state = {
@@ -270,6 +269,8 @@ class EditUser extends React.Component{
         });
         }
         else{
+            console.log("--------------------------");
+            console.log(filtered);
             this.setState({superiorError: ""}, () => { this.setState({isError: this.errorCheck() ,[e.target.name]: e.target.value,
                 supname: filtered.length === 0 ? "" : filtered[0].name}) });  
         }

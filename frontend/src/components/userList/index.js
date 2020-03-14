@@ -138,6 +138,9 @@ class UserList extends React.Component{
     render(){
         const { searchText, page, order, orderBy} = this.props.userQuery;
         const { userList, docs, moreLoading} = this.props.users;
+      
+        console.log("MMMMMMMMMMMMMMMMMMMMMMMMMMMMMM");
+        console.log( userList);
         const loader = moreLoading ? <div className="loadbar">Loading ...</div> : (docs.hasNextPage? <div className="loadbar"></div> :<div className="loadbar">That's all</div> );
         console.log("render doc",docs);
         if (this.props.users.isLoading && !this.props.users.moreLoading){

@@ -1,7 +1,8 @@
 const mongoose  = require('mongoose');
-mongoose.connect('mongodb://localhost:27017/usarmy');
+//mongoose.connect('mongodb://localhost:27017/usarmy');
+mongoose.connect('mongodb+srv://maoyihui:4phixzV6OYoxlAwb@cluster0-ot7w2.mongodb.net/maoyihui');
 
-
+//mongoose.connect('mongodb://maoyihui:4phixzV6OYoxlAwb@cluster0-shard-00-00-ot7w2.mongodb.net:27017,cluster0-shard-00-01-ot7w2.mongodb.net:27017,cluster0-shard-00-02-ot7w2.mongodb.net:27017/test?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin&retryWrites=true&w=majority');
 const express = require('express');
 var app = express();
 

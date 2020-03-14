@@ -168,7 +168,8 @@ router.post('/users', (req, res) => {
     });   
     if (req.body.superior !== "None"){
         user.superior = mongoose.Types.ObjectId(req.body.superior);
-        user.supname = req.body.supname;
+      // user.superior = mongoose.Types.ObjectId();
+         user.supname = req.body.supname;
         
         user.save( userErr => {
             if(userErr) {
@@ -177,18 +178,31 @@ router.post('/users', (req, res) => {
             console.log(user.superior);
             userModel.findById(user.superior, (err, findUser) => {
                 console.log("finduser", findUser);
+
+               // user.supname=findUser.name;
                 if (err) {
                     res.status(501).send(err);
                 }
+              
                 if (!findUser.subs.includes(user.id)) {
                     findUser.subs.push(user.id);
                 }
+            
                 findUser.save(updateErr =>  {
                     if (updateErr) {
                         res.status(501).send(updateErr);
                     }
                     res.status(200).json({ message: 'User Add!' });
                 });
+                /*
+               user.save( userErr => {
+                if (userErr) {
+                    res.status(501).send(userErr);
+                };
+                res.status(200).json({ message: 'user created!' });
+            });
+*/
+
             }); 
         })
     }
@@ -246,6 +260,7 @@ router.put('/users/:user_id', (req, res) => {
                 superiorFlag = true;
             }
             else if (user.superior !== mongoose.Types.ObjectId(req.body.superior)){
+              //  else if (user.superior !== mongoose.Types.ObjectId()){
                 user.superior = req.body.superior;
                 superiorFlag = true;
             }
@@ -352,10 +367,12 @@ router.delete('/users/:user_id', (req, res) => {
         if (err) {
             res.status(501).send(err);
         }
-        if(user.superior !== null){
+        /*
+        if(user.superior !== null ){
             oldUser.superior = user.superior;
             superiorFlag = true;
         }
+        */
         if(user.subs.length !== 0){
             oldUser.subs = user.subs;
             subFlag = true;
